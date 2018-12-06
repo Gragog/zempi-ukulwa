@@ -6,6 +6,14 @@ public class Tile : MonoBehaviour {
 
     LayerMask layerMask;
 
+    public enum Grid
+    {
+        Up = 1,
+        Down = 2,
+        Left = 4,
+        Right = 8,
+    }
+
     public void Start()
     {
         gameObject.layer = LayerMask.NameToLayer("Tile");
@@ -25,44 +33,44 @@ public class Tile : MonoBehaviour {
     {
         int sum = 0;
 
-        sum += Physics2D.OverlapCircle(transform.position + Vector3.up, .2f, layerMask) != null ? 1 : 0;
-        sum += Physics2D.OverlapCircle(transform.position + Vector3.down, .2f, layerMask) != null ? 2 : 0;
-        sum += Physics2D.OverlapCircle(transform.position + Vector3.left, .2f, layerMask) != null ? 4 : 0;
-        sum += Physics2D.OverlapCircle(transform.position + Vector3.right, .2f, layerMask) != null ? 8 : 0;
+        sum += Physics2D.OverlapCircle(transform.position + Vector3.up, .2f, layerMask) != null ? (int)Grid.Up : 0;
+        sum += Physics2D.OverlapCircle(transform.position + Vector3.down, .2f, layerMask) != null ? (int)Grid.Down : 0;
+        sum += Physics2D.OverlapCircle(transform.position + Vector3.left, .2f, layerMask) != null ? (int)Grid.Left : 0;
+        sum += Physics2D.OverlapCircle(transform.position + Vector3.right, .2f, layerMask) != null ? (int)Grid.Right : 0;
 
         switch(sum)
         {
             case 0:
                 return Tiles.Position.Single;
-            case 1:
+            case (int)Grid.Up:
                 return Tiles.Position.Thin_Vertical_Bottom;
-            case 2:
+            case (int)Grid.Down:
                 return Tiles.Position.Thin_Vertical_Top;
-            case 3:
+            case (int)Grid.Up + (int)Grid.Down:
                 return Tiles.Position.Thin_Vertical_Center;
-            case 4:
+            case (int)Grid.Left:
                 return Tiles.Position.Thin_Horizontal_Right;
-            case 5:
+            case (int)Grid.Up + (int)Grid.Left:
                 return Tiles.Position.Block_BottomRight;
-            case 6:
+            case (int)Grid.Down + (int)Grid.Left:
                 return Tiles.Position.Block_TopRight;
-            case 7:
+            case (int)Grid.Up + (int)Grid.Left + (int)Grid.Down:
                 return Tiles.Position.Block_Right;
-            case 8:
+            case (int)Grid.Right:
                 return Tiles.Position.Thin_Horizontal_Left;
-            case 9:
+            case (int)Grid.Up + (int)Grid.Right:
                 return Tiles.Position.Block_BottomLeft;
-            case 10:
+            case (int)Grid.Down + (int)Grid.Right:
                 return Tiles.Position.Block_TopLeft;
-            case 11:
+            case (int)Grid.Up + (int)Grid.Right + (int)Grid.Down:
                 return Tiles.Position.Block_Left;
-            case 12:
+            case (int)Grid.Left + (int)Grid.Right:
                 return Tiles.Position.Thin_Horizontal_Center;
-            case 13:
+            case (int)Grid.Left + (int)Grid.Up + (int)Grid.Right:
                 return Tiles.Position.Block_Bottom;
-            case 14:
+            case (int)Grid.Left + (int)Grid.Down + (int)Grid.Right:
                 return Tiles.Position.Block_Top;
-            case 15:
+            case (int)Grid.Up + (int)Grid.Down + (int)Grid.Left + (int)Grid.Right:
                 return Tiles.Position.Block_Center;
         }
 

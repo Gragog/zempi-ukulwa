@@ -62,6 +62,8 @@ public class RuntimeSpriter : MonoBehaviour {
         byte[] fileData;
         Texture2D texture;
 
+        Debug.Log(File.Exists(filePath));
+
         if (File.Exists(filePath))
         {
             fileData = File.ReadAllBytes(filePath);

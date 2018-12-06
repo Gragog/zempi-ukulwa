@@ -38,11 +38,15 @@ public class Tiles
     {
         tiles[Position.Fallback] = sprites[0];
 
+        Debug.Log(sprites.Length);
+
         if (sprites.Length == 16)
         {
             AssignBasicTileSet(sprites);
             return;
         }
+
+        Debug.LogWarning("It's <color=red>NOT</color> a basic TileSet!");
     }
 
     void AssignBasicTileSet(Sprite[] sprites)
@@ -72,11 +76,9 @@ public class Tiles
 
     public Sprite GetTile(Position name)
     {
-        Sprite tile = tiles[name];
-
-        if (tile)
+        if (tiles.ContainsKey(name))
         {
-            return tile;
+            return tiles[name];
         }
 
         return tiles[Position.Fallback];
