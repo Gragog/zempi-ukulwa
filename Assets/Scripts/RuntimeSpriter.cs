@@ -62,8 +62,6 @@ public class RuntimeSpriter : MonoBehaviour {
         byte[] fileData;
         Texture2D texture;
 
-        Debug.Log(File.Exists(filePath));
-
         if (File.Exists(filePath))
         {
             fileData = File.ReadAllBytes(filePath);
@@ -97,8 +95,8 @@ public class RuntimeSpriter : MonoBehaviour {
         foreach (Transform old in transform)
         {
             Destroy(old.gameObject);
-            tileObjects.Clear();
         }
+        tileObjects.Clear();
 
         int sizeY = (int)size.y;
         int sizeX = (int)size.x;
