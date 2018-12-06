@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour {
     KeyCode moveLeft   = KeyCode.A;
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         Vector3 movement = new Vector3();
 
         if (Input.GetKey(moveRight))
