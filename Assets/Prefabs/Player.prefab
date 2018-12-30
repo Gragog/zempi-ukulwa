@@ -49,9 +49,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224052059856579736}
-  - component: {fileID: 114938651936022416}
   - component: {fileID: 222312805617507356}
   - component: {fileID: 114680690498975754}
+  - component: {fileID: 114938651936022416}
   m_Layer: 0
   m_Name: PowerAim
   m_TagString: Untagged
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &114680690498975754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,8 +292,8 @@ MonoBehaviour:
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0.917
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &114700952536073486
