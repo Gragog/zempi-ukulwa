@@ -7,14 +7,25 @@ public class Projectile : MonoBehaviour {
     [Range(1f, 100f)]
     public int power = 20;
 
+    GameObject owner;
+    Rigidbody2D ragdoll;
+
 	// Use this for initialization
-	void Start () {
-        Rigidbody2D ragdoll = GetComponent<Rigidbody2D>();
+	void Awake () {
+        ragdoll = GetComponent<Rigidbody2D>();
 
-        Vector2 direction = new Vector2(1f, 1f);
-
-        ragdoll.AddForce(direction.normalized * power * 0.3f, ForceMode2D.Impulse);
+        Destroy(gameObject, 30f);
 	}
+
+    public void ApplyForce(Vector2 target, float power)
+    {
+        ragdoll.AddForce(target.normalized * power * 0.3f, ForceMode2D.Impulse);
+    }
+
+    public void SetOwner(GameObject newOwner)
+    {
+        this.owner = newOwner;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,7 +34,17 @@ public class Projectile : MonoBehaviour {
             transform.position = new Vector2(-4, 5);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-            Start();
+            Awake();
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }

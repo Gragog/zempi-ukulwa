@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class PlayerMove : MonoBehaviour {
     public LayerMask ground;
 
     public GameObject shot;
-    public Transform shotPoint;
+    public Transform power;
 
     KeyCode moveRight = KeyCode.D;
     KeyCode moveLeft  = KeyCode.A;
@@ -22,6 +23,11 @@ public class PlayerMove : MonoBehaviour {
 
     Vector2 shotOrigin;
     GameObject firedShot;
+
+    private void Start()
+    {
+        InvokeRepeating("Shoot", 1f, .5f);
+    }
 
     // Update is called once per frame
     void FixedUpdate () {
@@ -50,12 +56,7 @@ public class PlayerMove : MonoBehaviour {
 
         if (Input.GetKey(fire) && !firedShot)
         {
-            shotOrigin = new Vector2(
-                transform.localPosition.x + shotPoint.localPosition.x,
-                transform.localPosition.y + shotPoint.localPosition.y
-            );
-
-            firedShot = Instantiate(shot, shotOrigin, Quaternion.identity, transform.parent);
+            this.Shoot();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -64,15 +65,40 @@ public class PlayerMove : MonoBehaviour {
         }
     }
 
+    private void Shoot()
+    {
+        shotOrigin = transform.position.ToVector2() + (power.localPosition.ToVector2().normalized);
+        //shotOrigin = new Vector2(
+        //    transform.position.x + (power.localPosition.x * .5f),
+        //    transform.position.y + (power.localPosition.y * .5f)
+        //);
+
+        firedShot = Instantiate(shot, shotOrigin, Quaternion.identity, transform.parent);
+        Projectile projectile = firedShot.GetComponent<Projectile>();
+        projectile.SetOwner(gameObject);
+
+        projectile.ApplyForce(power.localPosition, power.localPosition.magnitude * 10f);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(.8f, .95f, .1f);
         Gizmos.DrawSphere(new Vector2(transform.position.x, transform.position.y - 0.4f), .08f);
 
         Gizmos.color = new Color(.9f, .2f, 0f);
-        Gizmos.DrawSphere(new Vector2(
-                transform.localPosition.x + shotPoint.localPosition.x,
-                transform.localPosition.y + shotPoint.localPosition.y
-            ), .1f);
+        Gizmos.DrawSphere(shotOrigin, .1f);
+
+        if (power)
+        {
+            Gizmos.color = Color.blue;
+            Vector2 powPos = new Vector2(
+                transform.localPosition.x + power.localPosition.x,
+                transform.localPosition.y + power.localPosition.y
+            );
+
+            Gizmos.DrawSphere(powPos, .1f);
+
+            Gizmos.DrawLine(transform.position, powPos);
+        }
     }
 }
