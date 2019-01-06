@@ -24,10 +24,10 @@ public class PlayerMove : MonoBehaviour {
     Vector2 shotOrigin;
     GameObject firedShot;
 
-    private void Start()
-    {
-        InvokeRepeating("Shoot", 1f, .5f);
-    }
+    //private void Start()
+    //{
+    //    InvokeRepeating("Shoot", 1f, .5f);
+    //}
 
     // Update is called once per frame
     void FixedUpdate () {
