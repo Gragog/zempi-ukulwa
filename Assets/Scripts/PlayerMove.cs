@@ -74,10 +74,10 @@ public class PlayerMove : MonoBehaviour {
         //);
 
         firedShot = Instantiate(shot, shotOrigin, Quaternion.identity, transform.parent);
-        Projectile projectile = firedShot.GetComponent<Projectile>();
+        AbstractProjectile projectile = firedShot.GetComponent<AbstractProjectile>();
         projectile.SetOwner(gameObject);
 
-        projectile.ApplyForce(power.localPosition, power.localPosition.magnitude * 10f);
+        projectile.ApplyForce(power.localPosition, power.localPosition.magnitude * 25f);
     }
 
     private void OnDrawGizmos()

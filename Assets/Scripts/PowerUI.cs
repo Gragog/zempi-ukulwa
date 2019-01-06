@@ -38,9 +38,6 @@ public class PowerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 power.position = mousePosition;
                 float rotation = Angle.AngleBetweenVector2(transform.position, crossHair.transform.position);
 
-                Debug.Log(rotation);
-                //crossHair.transform.Rotate(Vector3.forward, crossHair.transform.rotation.z + rotation);
-                //Quaternion newRotation = Quaternion.FromToRotation(crossHair.transform.rotation.eulerAngles, new Vector3(0f, 0f, rotation));
                 Quaternion newRotation = new Quaternion
                 {
                     eulerAngles = new Vector3(0f, 0f, rotation + 45f)

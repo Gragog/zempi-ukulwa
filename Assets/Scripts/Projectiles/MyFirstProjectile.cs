@@ -2,35 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
-
-    [Range(1f, 100f)]
-    public int power = 20;
-
-    GameObject owner;
-    Rigidbody2D ragdoll;
+public class MyFirstProjectile : AbstractProjectile {
+    
     bool peakWasReached = false;
 
-	// Use this for initialization
-	void Awake () {
-        ragdoll = GetComponent<Rigidbody2D>();
-
-        Destroy(gameObject, 30f);
-        // GetComponent<CircleCollider2D>().isTrigger = true;
-	}
-
-    public void ApplyForce(Vector2 target, float power)
+    protected override void Init()
     {
-        ragdoll.AddForce(target.normalized * power * 0.3f, ForceMode2D.Impulse);
     }
 
-    public void SetOwner(GameObject newOwner)
+    protected override void OnHitDamagable(IDamagable damagable)
     {
-        this.owner = newOwner;
+        DealBasicDamage(damagable);
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    protected override void OnHitGround()
+    {
+        Destroy(gameObject);
+    }
+
+    protected override void OnHitProjectile()
+    {
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
         bool peak = !peakWasReached && ragdoll.velocity.y <= 0;
         
         if (peak)
@@ -76,14 +71,6 @@ public class Projectile : MonoBehaviour {
         if (peakWasReached)
         {
             GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length - 1)];
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag != gameObject.tag)
-        {
-            Destroy(gameObject);
         }
     }
 }
