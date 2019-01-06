@@ -46,7 +46,7 @@ public class PlayerMove : MonoBehaviour {
             movement.x -= speed;
         }
 
-        if (Input.GetKeyDown(jump) && Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.4f), .08f, ground) != null)
+        if (Input.GetKeyDown(jump) && Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.4f), .15f, ground) != null)
         {
             ragdoll.AddForce(Vector2.up * jumpPower * 20, ForceMode2D.Force);
         }
