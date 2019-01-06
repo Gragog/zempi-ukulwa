@@ -155,6 +155,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb58682787ed1cf43b883f18aec622cd, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &26428510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1977150747649666, guid: 86b00c984d6a55c46ab8b516ea44a984,
+    type: 2}
+  m_PrefabInternal: {fileID: 1124317233}
 --- !u!1001 &91188253
 Prefab:
   m_ObjectHideFlags: 0
@@ -1113,6 +1118,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4415900358440420, guid: 86b00c984d6a55c46ab8b516ea44a984, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114938651936022416, guid: 86b00c984d6a55c46ab8b516ea44a984,
+        type: 2}
+      propertyPath: corssHair
+      value: 
+      objectReference: {fileID: 26428510}
+    - target: {fileID: 4071765069055526, guid: 86b00c984d6a55c46ab8b516ea44a984, type: 2}
+      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
