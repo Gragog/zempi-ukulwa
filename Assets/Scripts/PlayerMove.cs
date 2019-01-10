@@ -15,6 +15,12 @@ public class PlayerMove : MonoBehaviour {
 
     public GameObject shot;
     public Transform power;
+    public GameObject[] uiToDisable;
+
+    List<AbstractProjectile> shots = new List<AbstractProjectile>();
+
+    [SerializeField]
+    bool activeTurn = false;
 
     KeyCode moveRight = KeyCode.D;
     KeyCode moveLeft  = KeyCode.A;
@@ -24,13 +30,21 @@ public class PlayerMove : MonoBehaviour {
     Vector2 shotOrigin;
     GameObject firedShot;
 
-    //private void Start()
-    //{
-    //    InvokeRepeating("Shoot", 1f, .5f);
-    //}
+    private void Awake()
+    {
+        RoundManager.Instance.AddPlayer(this);
+        SetActiveTurn(activeTurn);
+
+        //InvokeRepeating("Shoot", 1f, .5f);
+    }
 
     // Update is called once per frame
     void FixedUpdate () {
+        if (!activeTurn)
+        {
+            return;
+        }
+
         #region Movement
 
         Vector3 movement = new Vector3();
@@ -75,9 +89,38 @@ public class PlayerMove : MonoBehaviour {
 
         firedShot = Instantiate(shot, shotOrigin, Quaternion.identity, transform.parent);
         AbstractProjectile projectile = firedShot.GetComponent<AbstractProjectile>();
-        projectile.SetOwner(gameObject);
+
+        shots.Add(projectile);
+        projectile.SetOwner(this);
 
         projectile.ApplyForce(power.localPosition, power.localPosition.magnitude * 25f);
+    }
+
+    public void SetActiveTurn(bool value)
+    {
+        activeTurn = value;
+
+        foreach (GameObject uiElemet in uiToDisable)
+        {
+            uiElemet.SetActive(value);
+        }
+    }
+
+    public void UnloadShot(AbstractProjectile shot)
+    {
+        Debug.Log(shot.name);
+
+        if (shots.Contains(shot))
+        {
+            shots.Remove(shot);
+
+            Debug.Log(shots.Count);
+
+            if (shots.Count == 0)
+            {
+                RoundManager.Instance.NextTurn();
+            }
+        }
     }
 
     private void OnDrawGizmos()

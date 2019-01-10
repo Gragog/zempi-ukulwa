@@ -6,15 +6,16 @@ using UnityEngine;
 public abstract class AbstractProjectile : MonoBehaviour {
 
     public int damageAmount = 15;
+    public bool pushOpponent = false;
 
     protected Rigidbody2D ragdoll;
-    protected GameObject owner;
+    protected PlayerMove owner;
 
     protected void Awake()
     {
         ragdoll = GetComponent<Rigidbody2D>();
 
-        Destroy(gameObject, 30f);
+        Invoke("Unload", 30f);
         // GetComponent<CircleCollider2D>().isTrigger = true;
     }
 
@@ -28,9 +29,14 @@ public abstract class AbstractProjectile : MonoBehaviour {
     public void ApplyForce(Vector2 target, float power)
     {
         ragdoll.AddForce(target.normalized * power * 0.3f, ForceMode2D.Impulse);
+
+        if (!pushOpponent)
+        {
+            ragdoll.mass = 0.0001f;
+        }
     }
 
-    public void SetOwner(GameObject newOwner)
+    public void SetOwner(PlayerMove newOwner)
     {
         this.owner = newOwner;
     }
@@ -72,6 +78,16 @@ public abstract class AbstractProjectile : MonoBehaviour {
     protected void DealBasicDamage(IDamagable damagable)
     {
         damagable.DealDamage(damageAmount);
+
+        Unload();
+    }
+
+    protected void Unload()
+    {
+        Debug.Log("unloading...");
+
+        owner.UnloadShot(this);
+
         Destroy(gameObject);
     }
 }

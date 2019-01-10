@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -294,6 +294,10 @@ MonoBehaviour:
     m_Bits: 512
   shot: {fileID: 1210346716078264, guid: c47d39fd088a1a7469039593fc7afe0a, type: 3}
   power: {fileID: 4071765069055526}
+  uiToDisable:
+  - {fileID: 1977150747649666}
+  - {fileID: 1246085313798854}
+  activeTurn: 0
 --- !u!114 &114919116165529780
 MonoBehaviour:
   m_ObjectHideFlags: 0
