@@ -11,6 +11,8 @@ public class MyHealthController : MonoBehaviour, IDamagable
     public float armorReduction = 0.5f;
 
     public Image healthBar;
+    public ShieldPanelUI shieldUI;
+    public GameObject shieldSegment;
 
     int currentHealth;
     byte currentArmorAmount;
@@ -22,6 +24,8 @@ public class MyHealthController : MonoBehaviour, IDamagable
 
         if (healthBar)
         {
+            shieldUI.shieldSegment = shieldSegment;
+            shieldUI.CreateSegments(startArmorAmount);
             UpdateUI();
 
             return;
@@ -38,11 +42,13 @@ public class MyHealthController : MonoBehaviour, IDamagable
     public bool DealDamage(int amount)
     {
         float newAmount = amount;
+        byte shieldDamage = 1;
 
         if (currentArmorAmount > 0)
         {
             newAmount *= 1f - armorReduction;
-            currentArmorAmount--;
+            currentArmorAmount -= shieldDamage;
+            shieldUI.RemoveSegments(shieldDamage);
         }
 
         currentHealth -= (int)newAmount;

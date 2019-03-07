@@ -79,15 +79,11 @@ public abstract class AbstractProjectile : MonoBehaviour {
     {
         damagable.DealDamage(damageAmount);
 
-        Unload();
+        Destroy(gameObject);
     }
 
-    protected void Unload()
+    protected void OnDestroy()
     {
-        Debug.Log("unloading...");
-
         owner.UnloadShot(this);
-
-        Destroy(gameObject);
     }
 }

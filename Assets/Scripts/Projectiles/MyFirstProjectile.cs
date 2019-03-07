@@ -17,7 +17,7 @@ public class MyFirstProjectile : AbstractProjectile {
 
     protected override void OnHitGround()
     {
-        Unload();
+        Destroy(gameObject);
     }
 
     protected override void OnHitProjectile()

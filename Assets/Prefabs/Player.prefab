@@ -314,6 +314,9 @@ MonoBehaviour:
   startArmorAmount: 2
   armorReduction: 0.5
   healthBar: {fileID: 1074949391432928941}
+  shieldUI: {fileID: 2344008517565428739}
+  shieldSegment: {fileID: 3775210943603237665, guid: 6c84be5d1c0a2df4b882207e89f9fd07,
+    type: 3}
 --- !u!1 &1863191038779664
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +580,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2008548855546341064, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas_Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715800095088646351, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Name
+      value: Shield_Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458209913940033956, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458209913940033956, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458209913940033956, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458209913940033956, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458209913940033956, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458209913940033956, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192764879201159093, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Name
+      value: ShieldSegment
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344958807170100824, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.23113209
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344958807170100824, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344958807170100824, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344958807170100824, guid: 8e25683a1a0bac2499df07876ac4971b,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.6862745
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e25683a1a0bac2499df07876ac4971b, type: 3}
 --- !u!4 &1108465424662355503 stripped
@@ -585,6 +653,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1113165189401466875}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2344008517565428739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3455763415444808696, guid: 8e25683a1a0bac2499df07876ac4971b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1113165189401466875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a0bdf5d7a06524a8483b501a072002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1074949391432928941 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114908934686054742, guid: 8e25683a1a0bac2499df07876ac4971b,
